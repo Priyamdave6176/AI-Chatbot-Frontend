@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wispa - AI Chat</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="assist/css/multi_dashboard.css">
+</head>
+<body class="dark-mode"> <!-- Default theme -->
+
+    <!-- HTML Structure -->
+    <div class="chat-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <!-- Header -->
+            <div class="sidebar-header">
+                <div class="logo">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.55a11 11 0 0 1 14.08 0"></path><path d="M1.42 9a16 16 0 0 1 21.16 0"></path><path d="M8.53 16.11a6 6 0 0 1 6.95 0"></path><line x1="12" y1="20" x2="12.01" y2="20"></line></svg>
+                    <span>Edu AI</span>
+                </div>
+                <button class="mobile-sidebar-close-btn" id="mobile-sidebar-close-btn" title="Close Sidebar">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                </button>
+                <button class="sidebar-toggle-btn" id="sidebar-toggle-desktop" title="Toggle Sidebar">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="9" y1="3" x2="9" y2="21"></line></svg>
+                </button>
+            </div>
+            <div class="new-chat-container">
+                <button class="new-chat-btn">
+                    <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" class="h-7 w-7">
+                        <path d="M15.6729 3.91287C16.8918 2.69392 18.8682 2.69392 20.0871 3.91287C21.3061 5.13182 21.3061 7.10813 20.0871 8.32708L14.1499 14.2643C13.3849 15.0293 12.3925 15.5255 11.3215 15.6785L9.14142 15.9899C8.82983 16.0344 8.51546 15.9297 8.29289 15.7071C8.07033 15.4845 7.96554 15.1701 8.01005 14.8586L8.32149 12.6785C8.47449 11.6075 8.97072 10.615 9.7357 9.85006L15.6729 3.91287ZM18.6729 5.32708C18.235 4.88918 17.525 4.88918 17.0871 5.32708L11.1499 11.2643C10.6909 11.7233 10.3932 12.3187 10.3014 12.9613L10.1785 13.8215L11.0386 13.6986C11.6812 13.6068 12.2767 13.3091 12.7357 12.8501L18.6729 6.91287C19.1108 6.47497 19.1108 5.76499 18.6729 5.32708ZM11 3.99929C11.0004 4.55157 10.5531 4.99963 10.0008 5.00007C9.00227 5.00084 8.29769 5.00827 7.74651 5.06064C7.20685 5.11191 6.88488 5.20117 6.63803 5.32695C6.07354 5.61457 5.6146 6.07351 5.32698 6.63799C5.19279 6.90135 5.10062 7.24904 5.05118 7.8542C5.00078 8.47105 5 9.26336 5 10.4V13.6C5 14.7366 5.00078 15.5289 5.05118 16.1457C5.10062 16.7509 5.19279 17.0986 5.32698 17.3619C5.6146 17.9264 6.07354 18.3854 6.63803 18.673C6.90138 18.8072 7.24907 18.8993 7.85424 18.9488C8.47108 18.9992 9.26339 19 10.4 19H13.6C14.7366 19 15.5289 18.9992 16.1458 18.9488C16.7509 18.8993 17.0986 18.8072 17.362 18.673C17.9265 18.3854 18.3854 17.9264 18.673 17.3619C18.7988 17.1151 18.8881 16.7931 18.9393 16.2535C18.9917 15.7023 18.9991 14.9977 18.9999 13.9992C19.0003 13.4469 19.4484 12.9995 20.0007 13C20.553 13.0004 21.0003 13.4485 21.0007 14.0007C20.9991 14.9789 20.9932 15.7808 20.9304 16.4426C20.8664 17.116 20.7385 17.7136 20.455 18.2699C19.9757 19.2107 19.2108 19.9756 18.27 20.455C17.6777 20.7568 17.0375 20.8826 16.3086 20.9421C15.6008 21 14.7266 21 13.6428 21H10.3572C9.27339 21 8.39925 21 7.69138 20.9421C6.96253 20.8826 6.32234 20.7568 5.73005 20.455C4.78924 19.9756 4.02433 19.2107 3.54497 18.2699C3.24318 17.6776 3.11737 17.0374 3.05782 16.3086C2.99998 15.6007 2.99999 14.7266 3 13.6428V10.3572C2.99999 9.27337 2.99998 8.39922 3.05782 7.69134C3.11737 6.96249 3.24318 6.3223 3.54497 5.73001C4.02433 4.7892 4.78924 4.0243 5.73005 3.54493C6.28633 3.26149 6.88399 3.13358 7.55735 3.06961C8.21919 3.00673 9.02103 3.00083 9.99922 3.00007C10.5515 2.99964 10.9996 3.447 11 3.99929Z" fill="currentColor"></path>
+                    </svg>
+                    <span>New Chat</span>
+                </button>
+                <button class="search-btn" id="sidebar-search-btn" title="Search Chats">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                </button>
+            </div>
+            <nav class="chat-history"></nav>
+            <div class="sidebar-footer">
+                <div class="token-count">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path></svg>
+                    <span id="token-count-text">100 tokens left</span>
+                </div>
+                <button class="theme-toggle" id="theme-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+                    <span id="theme-toggle-text">Dark Mode</span>
+                </button>
+                <button class="user-profile-button" id="user-profile-button">
+                    <img src="data:image/svg+xml;charset=UTF-8,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z' fill='%23E0E0E0'/%3E%3C/svg%3E" class="avatar" id="user-avatar-sidebar" alt="User Avatar"/>
+                    <div class="user-info">
+                        <span class="user-name" id="user-name-sidebar">Erica</span>
+                        <span class="user-email" id="user-email-sidebar">erica@example.com</span>
+                    </div>
+                </button>
+            </div>
+            <div class="popover user-profile-popover" id="user-profile-popover">
+                <nav>
+                    <button class="popover-item" data-action="open-settings"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0 2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>Account Settings</button>
+                    <button class="popover-item" data-action="custom-bots"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>Custom Bots <span class="badge">4</span></button>
+                    <button class="popover-item" data-action="community"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>Community</button>
+                    <button class="popover-item" data-action="integrations"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2" ry="2"></rect><rect x="9" y="9" width="6" height="6"></rect><line x1="9" y1="1" x2="9" y2="4"></line><line x1="15" y1="1" x2="15" y2="4"></line><line x1="9" y1="20" x2="9" y2="23"></line><line x1="15" y1="20" x2="15" y2="23"></line><line x1="20" y1="9" x2="23" y2="9"></line><line x1="20" y1="14" x2="23" y2="14"></line><line x1="1" y1="9" x2="4" y2="9"></line><line x1="1" y1="14" x2="4" y2="14"></line></svg>Integrations</button>
+                    <hr class="popover-divider">
+                    <button class="popover-item" data-action="open-support"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>Support</button>
+                    <button class="popover-item" data-action="logout"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>Log out</button>
+                </nav>
+            </div>
+        </aside>
+
+        <button class="mobile-menu-toggle">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+        </button>
+
+        <main class="chat-area">
+            <div class="chat-header">
+                <button id="mobile-new-chat-btn" title="New Chat">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="12" y1="18" x2="12" y2="12"></line><line x1="9" y1="15" x2="15" y2="15"></line></svg>
+                </button>
+                <span class="mobile-chat-title" id="mobile-chat-title">New Chat</span>
+                <div class="model-selector-container">
+                    <button class="model-selector-trigger-btn" id="model-selector-trigger-btn" aria-haspopup="true" aria-expanded="false">
+                        <span id="model-selector-current-name">Plans</span>
+                        <svg class="model-selector-arrow" width="12" height="12" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
+                        </svg>
+                    </button>
+                    <div class="model-selector-popover" id="model-selector-popover" role="menu">
+                        <div class="model-option-item" data-model="plus" role="menuitem">
+                            <div class="model-option-main-content">
+                                <svg class="model-option-icon" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M12 2L9.19 8.63L2 11L9.19 13.37L12 20L14.81 13.37L22 11L14.81 8.63L12 2Z"/>
+                                </svg>
+                                <div class="model-option-text">
+                                    <span class="model-option-name">Plus</span>
+                                    <span class="model-option-description">Our smartest model & more</span>
+                                </div>
+                            </div>
+                            <button class="model-option-upgrade-btn" id="model-selector-upgrade-btn">Upgrade</button>
+                        </div>
+                        <div class="model-option-item active" data-model="default" role="menuitemradio" aria-checked="true">
+                            <div class="model-option-main-content">
+                                <svg class="model-option-icon" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M16.998 8.504a4.497 4.497 0 00-6.068-1.566l-2.43 1.403a4.502 4.502 0 000 7.79l2.43 1.403a4.497 4.497 0 006.068-1.566l.002.003a4.5 4.5 0 000-6.364l-.002-.003zm-1.06 5.303a2.5 2.5 0 01-3.536 0l-.002-.001-2.43-1.403a2.502 2.502 0 010-4.328l2.43-1.403-.001-.001a2.5 2.5 0 013.538 3.535l.001.002-1.353 2.343a.5.5 0 00.433.75h2.706a2.5 2.5 0 01-1.794 3.532v.001zM7.002 15.496a4.497 4.497 0 006.068 1.566l2.43-1.403a4.502 4.502 0 000-7.79l-2.43-1.403a4.497 4.497 0 00-6.068 1.566l-.002-.003a4.5 4.5 0 000 6.364l.002.003zm1.06-5.303a2.5 2.5 0 013.536 0l.002.001 2.43 1.403a2.502 2.502 0 010 4.328l-2.43 1.403.001.001a2.5 2.5 0 01-3.538-3.535l-.001-.002 1.353-2.343a.5.5 0 00-.433-.75H5.296a2.5 2.5 0 011.794-3.532v-.001z"/>
+                                </svg>
+                                <div class="model-option-text">
+                                    <span class="model-option-name">plans</span>
+                                    <span class="model-option-description">Great for everyday tasks</span>
+                                </div>
+                            </div>
+                            <svg class="model-option-checkmark" width="16" height="16" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"/>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="messages-container">
+                <div class="initial-prompts-cards" id="initial-prompts-cards">
+                    <h3 class="initial-prompt-title">Start Learning with Wispa AI</h3>
+                    <div class="prompt-cards-grid">
+                        <button class="prompt-card" data-prompt="Explain the theory of relativity in simple terms.">
+                            <h4>Explain a Concept</h4>
+                            <p>e.g., Theory of Relativity</p>
+                            <span>Get clear, concise explanations of complex topics.</span>
+                        </button>
+                        <button class="prompt-card" data-prompt="Help me practice my Spanish conversation skills. Let's talk about hobbies.">
+                            <h4>Language Practice</h4>
+                            <p>e.g., Spanish Conversation</p>
+                            <span>Practice speaking and writing in a new language.</span>
+                        </button>
+                        <button class="prompt-card" data-prompt="Give me a 5-question quiz on World War II.">
+                            <h4>Quiz Me</h4>
+                            <p>e.g., World War II</p>
+                            <span>Test your knowledge on various subjects.</span>
+                        </button>
+                        <button class="prompt-card" data-prompt="Summarize the key points of the book 'Sapiens' by Yuval Noah Harari.">
+                            <h4>Book Summary</h4>
+                            <p>e.g., "Sapiens"</p>
+                            <span>Get quick summaries of books or articles.</span>
+                        </button>
+                        <button class="prompt-card" data-prompt="Tell me about the process of photosynthesis.">
+                            <h4>Science Explained</h4>
+                            <p>e.g., Photosynthesis</p>
+                            <span>Understand scientific processes step-by-step.</span>
+                        </button>
+                        <button class="prompt-card" data-prompt="What are some effective study techniques for learning history?">
+                            <h4>Study Tips</h4>
+                            <p>e.g., Learning History</p>
+                            <span>Discover effective learning strategies.</span>
+                        </button>
+                    </div>
+                </div>
+                <div class="messages-list" id="messages-list">
+                </div>
+            </div>
+
+            <div class="input-area">
+                <div class="file-preview-container" id="file-preview-container"></div>
+                <div class="input-wrapper">
+                    <button class="upload-btn" id="upload-btn" title="Upload file">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"></path></svg>
+                    </button>
+                    <input type="file" id="file-input" multiple style="display: none;">
+                    <textarea id="message-input" placeholder="Type your message or ask a question..." rows="1"></textarea>
+                    <button class="mic-btn" id="mic-btn" title="Start voice input">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2"></path><line x1="12" y1="19" x2="12" y2="23"></line><line x1="8" y1="23" x2="16" y2="23"></line></svg>
+                    </button>
+                    <button class="send-btn" id="send-btn" title="Send message" disabled>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+                    </button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <div class="popover-overlay" id="chat-search-overlay"></div>
+    <div class="popover chat-search-popover" id="chat-search-popover">
+        <div class="chat-search-header">
+            <input type="text" id="chat-search-input" placeholder="Search chats...">
+            <button class="chat-search-close-btn" id="chat-search-close-btn" title="Close Search">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+            </button>
+        </div>
+        <div class="chat-search-results-container" id="chat-search-results-container">
+            <button class="popover-item new-chat-search-item" id="new-chat-from-search-btn">
+                <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" class="h-7 w-7">
+                    <path d="M15.6729 3.91287C16.8918 2.69392 18.8682 2.69392 20.0871 3.91287C21.3061 5.13182 21.3061 7.10813 20.0871 8.32708L14.1499 14.2643C13.3849 15.0293 12.3925 15.5255 11.3215 15.6785L9.14142 15.9899C8.82983 16.0344 8.51546 15.9297 8.29289 15.7071C8.07033 15.4845 7.96554 15.1701 8.01005 14.8586L8.32149 12.6785C8.47449 11.6075 8.97072 10.615 9.7357 9.85006L15.6729 3.91287ZM18.6729 5.32708C18.235 4.88918 17.525 4.88918 17.0871 5.32708L11.1499 11.2643C10.6909 11.7233 10.3932 12.3187 10.3014 12.9613L10.1785 13.8215L11.0386 13.6986C11.6812 13.6068 12.2767 13.3091 12.7357 12.8501L18.6729 6.91287C19.1108 6.47497 19.1108 5.76499 18.6729 5.32708ZM11 3.99929C11.0004 4.55157 10.5531 4.99963 10.0008 5.00007C9.00227 5.00084 8.29769 5.00827 7.74651 5.06064C7.20685 5.11191 6.88488 5.20117 6.63803 5.32695C6.07354 5.61457 5.6146 6.07351 5.32698 6.63799C5.19279 6.90135 5.10062 7.24904 5.05118 7.8542C5.00078 8.47105 5 9.26336 5 10.4V13.6C5 14.7366 5.00078 15.5289 5.05118 16.1457C5.10062 16.7509 5.19279 17.0986 5.32698 17.3619C5.6146 17.9264 6.07354 18.3854 6.63803 18.673C6.90138 18.8072 7.24907 18.8993 7.85424 18.9488C8.47108 18.9992 9.26339 19 10.4 19H13.6C14.7366 19 15.5289 18.9992 16.1458 18.9488C16.7509 18.8993 17.0986 18.8072 17.362 18.673C17.9265 18.3854 18.3854 17.9264 18.673 17.3619C18.7988 17.1151 18.8881 16.7931 18.9393 16.2535C18.9917 15.7023 18.9991 14.9977 18.9999 13.9992C19.0003 13.4469 19.4484 12.9995 20.0007 13C20.553 13.0004 21.0003 13.4485 21.0007 14.0007C20.9991 14.9789 20.9932 15.7808 20.9304 16.4426C20.8664 17.116 20.7385 17.7136 20.455 18.2699C19.9757 19.2107 19.2108 19.9756 18.27 20.455C17.6777 20.7568 17.0375 20.8826 16.3086 20.9421C15.6008 21 14.7266 21 13.6428 21H10.3572C9.27339 21 8.39925 21 7.69138 20.9421C6.96253 20.8826 6.32234 20.7568 5.73005 20.455C4.78924 19.9756 4.02433 19.2107 3.54497 18.2699C3.24318 17.6776 3.11737 17.0374 3.05782 16.3086C2.99998 15.6007 2.99999 14.7266 3 13.6428V10.3572C2.99999 9.27337 2.99998 8.39922 3.05782 7.69134C3.11737 6.96249 3.24318 6.3223 3.54497 5.73001C4.02433 4.7892 4.78924 4.0243 5.73005 3.54493C6.28633 3.26149 6.88399 3.13358 7.55735 3.06961C8.21919 3.00673 9.02103 3.00083 9.99922 3.00007C10.5515 2.99964 10.9996 3.447 11 3.99929Z" fill="currentColor"></path>
+                </svg>
+                New chat
+            </button>
+            <div class="chat-search-history-groups" id="chat-search-history-groups">
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="file-upload-overlay">
+        <div class="modal" id="file-upload-modal" style="max-width: 600px;">
+            <div class="modal-header">
+                <h3><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"></path></svg>Upload Files</h3>
+                <button class="modal-close-btn" data-modal-id="file-upload"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></button>
+            </div>
+            <div class="modal-body" style="padding: 20px; display: flex; flex-direction: column; gap: 20px;">
+                <div>
+                    <label for="modal-file-input" id="modal-file-input-trigger" class="btn-primary" style="display: block; text-align: center; padding: 12px; cursor: pointer;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px; vertical-align: middle;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
+                        Choose Files
+                    </label>
+                    <input type="file" id="modal-file-input" multiple style="display: none;">
+                </div>
+                <div id="modal-current-files-section">
+                    <h4>Selected Files:</h4>
+                    <div id="modal-current-files-list" class="file-list-display" style="min-height: 50px; border: 1px dashed var(--border-color); border-radius: var(--border-radius-small); padding: 10px; max-height: 150px; overflow-y: auto;">
+                        <p class="empty-list-placeholder">No files selected yet.</p>
+                    </div>
+                </div>
+                <div id="modal-previous-files-section">
+                    <h4>Previously Used Files:</h4>
+                    <div id="modal-previous-files-list" class="file-list-display" style="border: 1px solid var(--border-color); border-radius: var(--border-radius-small); padding: 10px; max-height: 150px; overflow-y: auto;">
+                        <p class="empty-list-placeholder">No previously used files.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-secondary mr-3" data-modal-id="file-upload">Cancel</button>
+                <button class="btn-primary" id="add-selected-files-btn" disabled>Add to Chat</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="account-settings-overlay">
+        <div class="modal account-settings-modal" id="account-settings-modal">
+            <div class="modal-header"><h3><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0 2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>Account Settings</h3><button class="modal-close-btn" data-modal-id="account-settings"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></button></div>
+            <div class="modal-body">
+                <nav class="modal-nav">
+                    <button class="modal-nav-item active" data-section="profile"><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>Profile</button>
+                    <button class="modal-nav-item" data-section="settings"><svg viewBox="0 0 24 24"><line x1="4" y1="21" x2="4" y2="14"></line><line x1="4" y1="10" x2="4" y2="3"></line><line x1="12" y1="21" x2="12" y2="12"></line><line x1="12" y1="8" x2="12" y2="3"></line><line x1="20" y1="21" x2="20" y2="16"></line><line x1="20" y1="12" x2="20" y2="3"></line><line x1="1" y1="14" x2="7" y2="14"></line><line x1="9" y1="8" x2="15" y2="8"></line><line x1="17" y1="16" x2="23" y2="16"></line></svg>Settings</button>
+                    <button class="modal-nav-item" data-section="security"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>Security</button>
+                    <button class="modal-nav-item" data-section="appearance"><svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>Appearance</button>
+                    <button class="modal-nav-item" data-section="billing"><svg viewBox="0 0 24 24"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg>Billing</button>
+                </nav>
+                <div class="modal-content">
+                    <div class="modal-section active" id="profile-section">
+                        <h4>Profile</h4><p class="section-description">Manage personal info</p>
+                        <div class="form-group profile-picture-group">
+                            <img src="data:image/svg+xml;charset=UTF-8,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z' fill='%23E0E0E0'/%3E%3C/svg%3E" alt="Avatar" class="modal-avatar" id="user-avatar-modal">
+                            <div>
+                                <label for="avatar-upload-input">Profile Picture</label>
+                                <p class="description">Choose avatar (max 2MB)</p>
+                                <input type="file" id="avatar-upload-input" accept="image/*" style="display: none;">
+                                <button class="btn-primary" id="avatar-upload-btn" style="margin-top: 5px;">Upload</button>
+                            </div>
+                        </div>
+                        <div class="form-group"><label for="display-name">Display Name</label><input type="text" id="display-name" placeholder="In chats" value="Erica"></div>
+                        <div class="form-group"><label for="username">Username</label><input type="text" id="username" placeholder="@username"></div>
+                        <div class="form-group"><label for="email">Email</label><input type="email" id="email" placeholder="For notifications" value="erica@example.com"></div>
+                        <div class="form-group"><label for="primary-role">Primary Role</label><input type="text" id="primary-role" placeholder="e.g., Developer"></div>
+                    </div>
+                    <div class="modal-section" id="settings-section">
+                        <h4>Settings</h4><p class="section-description">Configure chat preferences</p>
+                        <div class="form-group toggle-group"><div><label for="message-history">History</label><p class="description">Save chats</p></div><label class="toggle-switch"><input type="checkbox" id="message-history"><span class="slider round"></span></label></div>
+                        <div class="form-group toggle-group"><div><label for="code-highlighting">Highlighting</label><p class="description">Syntax colors</p></div><label class="toggle-switch"><input type="checkbox" id="code-highlighting"><span class="slider round"></span></label></div>
+                        <div class="form-group toggle-group"><div><label for="ai-suggestions">Suggestions</label><p class="description">Show AI ideas</p></div><label class="toggle-switch"><input type="checkbox" id="ai-suggestions"><span class="slider round"></span></label></div>
+                        <div class="form-group"><label for="response-style">Response Style</label><select id="response-style"><option value="default">Default</option><option value="concise">Concise</option><option value="detailed">Detailed</option></select></div>
+                        <div class="form-group"><label for="code-output-format">Code Format</label><select id="code-output-format"><option value="markdown">Markdown</option><option value="fenced">Fenced</option></select></div>
+                    </div>
+                    <div class="modal-section" id="security-section">
+                        <h4>Security</h4><p class="section-description">Protect your account</p>
+                        <div class="form-group toggle-group"><div><label for="e2e-encryption">E2E Encryption</label><p class="description">Encrypt messages</p></div><label class="toggle-switch"><input type="checkbox" id="e2e-encryption"><span class="slider round"></span></label></div>
+                        <div class="form-group toggle-group"><div><label for="auto-delete">Auto-Delete</label><p class="description">Delete after 30 days</p></div><label class="toggle-switch"><input type="checkbox" id="auto-delete"><span class="slider round"></span></label></div>
+                        <div class="form-group toggle-group"><div><label for="two-factor">2FA</label><p class="description">Extra security layer</p></div><label class="toggle-switch"><input type="checkbox" id="two-factor"><span class="slider round"></span></label></div>
+                        <div class="form-group"><label for="recovery-email">Recovery Email</label><input type="email" id="recovery-email" value="backup@example.com"><p class="description small">For recovery/alerts</p></div>
+                        <div class="form-group api-key-group"><label for="api-key">API Key</label><div class="api-key-input"><input type="password" id="api-key" value="************" readonly><button class="btn-secondary btn-small">Regenerate</button></div><p class="description small">Access programmatically</p></div>
+                    </div>
+                    <div class="modal-section" id="appearance-section">
+                        <h4>Appearance</h4><p class="section-description">Customize interface look</p>
+                        <div class="form-group"><label>Theme</label><p class="description">Select preferred theme</p><div class="theme-options"><button class="theme-option" data-theme="system"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>System</button><button class="theme-option" data-theme="light"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>Light</button><button class="theme-option" data-theme="dark"><svg viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>Dark</button></div></div>
+                        <div class="form-group"><label>Accent Color</label><p class="description">Personalize interface</p><div class="accent-color-options"><button class="accent-color-option" style="background-color:#6A5AE0;" data-color="#6A5AE0"></button><button class="accent-color-option" style="background-color:#4CAF50;" data-color="#4CAF50"></button><button class="accent-color-option" style="background-color:#FF9800;" data-color="#FF9800"></button><button class="accent-color-option" style="background-color:#F44336;" data-color="#F44336"></button><button class="accent-color-option" style="background-color:#2196F3;" data-color="#2196F3"></button><button class="accent-color-option" style="background-color:#E91E63;" data-color="#E91E63"></button><button class="accent-color-option" style="background-color:#00BCD4;" data-color="#00BCD4"></button></div></div>
+                        <div class="form-group toggle-group"><div><label for="message-bubbles">Bubbles</label><p class="description">Bubble style</p></div><label class="toggle-switch"><input type="checkbox" id="message-bubbles"><span class="slider round"></span></label></div>
+                        <div class="form-group toggle-group"><div><label for="compact-mode">Compact</label><p class="description">Reduce spacing</p></div><label class="toggle-switch"><input type="checkbox" id="compact-mode"><span class="slider round"></span></label></div>
+                        <div class="form-group toggle-group"><div><label for="large-font">Large Font</label><p class="description">Increase text size</p></div><label class="toggle-switch"><input type="checkbox" id="large-font"><span class="slider round"></span></label></div>
+                    </div>
+                    <div class="modal-section" id="billing-section">
+                        <h4>Billing</h4><p class="section-description">Manage subscription</p>
+                        <div class="current-plan-card"><div class="plan-header"><div><h5>Pro Plan</h5><p>Monthly</p></div><div class="plan-price"><span class="plan-price-amount">$29.99</span><span class="price-interval">/mo</span><p class="renewal-date">Renews Mar 15, 2024</p></div></div><div class="usage-meters"><div class="usage-meter"><label><svg viewBox="0 0 24 24"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>Tokens</label><progress id="token-usage-progress" max="3000" value="2100"></progress><span id="token-usage-text">2.1k/3k</span></div><div class="usage-meter"><label><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>Storage</label><progress id="storage-usage-progress" max="10" value="4.2"></progress><span id="storage-usage-text">4.2/10GB</span></div><div class="usage-meter"><label><svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>API Calls</label><progress id="api-usage-progress" max="10000" value="8500"></progress><span id="api-usage-text">8.5k/10k</span></div></div></div>
+                        <div class="plan-comparison"><div class="plan-card"><h5>Team</h5><p class="plan-price">$99.99</p><ul><li>1M tokens/mo</li><li>50GB storage</li><li>Unlimited API</li><li>Priority support</li><li>Collaboration</li></ul><button class="btn-primary plan-button">Upgrade</button></div><div class="plan-card"><h5>Enterprise</h5><p class="plan-price">Custom</p><ul><li>Custom tokens</li><li>Unlimited storage</li><li>Dedicated support</li><li>Custom models</li><li>Analytics</li></ul><button class="btn-secondary plan-button">Contact Sales</button></div></div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer"><button class="btn-primary save-settings-btn">Save Changes</button></div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="support-center-overlay">
+        <div class="modal support-center-modal" id="support-center-modal">
+            <div class="modal-header"><h3><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>Support Center</h3><button class="modal-close-btn" data-modal-id="support-center"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></button></div>
+            <div class="modal-body">
+                <nav class="modal-nav">
+                    <button class="modal-nav-item" data-section="faq">FAQ's</button>
+                    <button class="modal-nav-item" data-section="changelog">Change Log</button>
+                    <button class="modal-nav-item" data-section="roadmap">Roadmap</button>
+                    <button class="modal-nav-item active" data-section="contact">Contact</button>
+                    <button class="modal-nav-item" data-section="privacy">Privacy</button>
+                    <button class="modal-nav-item" data-section="terms">Terms</button>
+                </nav>
+                <div class="modal-content">
+                    <div class="modal-section active" id="contact-section">
+                        <h4>Contact Support</h4><p class="section-description">Get assistance from our team.</p>
+                        <form class="contact-form" id="contact-support-form"><div class="form-row"><div class="form-group"><label for="support-first-name">First Name</label><input type="text" id="support-first-name" name="first_name" placeholder="First Name" required></div><div class="form-group"><label for="support-last-name">Last Name</label><input type="text" id="support-last-name" name="last_name" placeholder="Last Name" required></div></div><div class="form-group"><label for="support-subject">Subject</label><input type="text" id="support-subject" name="subject" placeholder="Subject" required></div><div class="form-group"><label for="support-message">Message</label><textarea id="support-message" name="message" rows="5" placeholder="Your message..." required></textarea></div><button type="submit" class="btn-primary contact-submit-btn">Send Message</button></form>
+                    </div>
+                    <div class="modal-section" id="faq-section"><h4>FAQ's</h4><p>FAQs...</p></div>
+                    <div class="modal-section" id="changelog-section"><h4>Change Log</h4><p>Updates...</p></div>
+                    <div class="modal-section" id="roadmap-section"><h4>Roadmap</h4><p>Future plans...</p></div>
+                    <div class="modal-section" id="privacy-section"><h4>Privacy</h4><p>Policy...</p></div>
+                    <div class="modal-section" id="terms-section"><h4>Terms</h4><p>Service terms...</p></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- NEW: Upgrade Plan Modal -->
+    <div class="modal-overlay" id="upgrade-plan-overlay">
+        <div class="modal" id="upgrade-plan-modal">
+            <div class="modal-header">
+                <h3>Upgrade your plan</h3>
+                <button class="modal-close-btn" data-modal-id="upgrade-plan">
+                    <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                </button>
+            </div>
+            <div class="modal-body modal-body-full">
+                <div class="upgrade-plan-toggle-container">
+                    <button class="plan-toggle-btn active" data-plan-type="personal">Personal</button>
+                    <button class="plan-toggle-btn" data-plan-type="business">Business</button>
+                </div>
+
+                <div class="upgrade-plan-cards-container" id="personal-plans-container">
+                    <!-- Free Plan -->
+                    <div class="upgrade-plan-card">
+                        <h4 class="plan-title">Free</h4>
+                        <div class="plan-price"><span class="price-amount">$0</span> USD/month</div>
+                        <p class="plan-description">Explore how AI can help you with everyday tasks</p>
+                        <button class="btn-secondary plan-action-btn current-plan-btn" disabled>Your current plan</button>
+                        <ul class="feature-list">
+                            <li class="feature-list-item"><svg viewBox="0 0 16 16" fill="currentColor"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"/></svg>Access to GPT-4o mini and reasoning</li>
+                            <li class="feature-list-item"><svg viewBox="0 0 16 16" fill="currentColor"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"/></svg>Standard voice mode</li>
+                            <li class="feature-list-item"><svg viewBox="0 0 16 16" fill="currentColor"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"/></svg>Real-time data from the web with search</li>
+                            <li class="feature-list-item"><svg viewBox="0 0 16 16" fill="currentColor"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"/></svg>Limited access to GPT-4o and o1-mini</li>
+                            <li class="feature-list-item"><svg viewBox="0 0 16 16" fill="currentColor"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"/></svg>Limited access to file uploads, advanced data analysis, and image generation</li>
+                            <li class="feature-list-item"><svg viewBox="0 0 16 16" fill="currentColor"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"/></svg>Use custom GPTs</li>
+                        </ul>
+                    </div>
+                    <!-- Plus Plan -->
+                    <div class="upgrade-plan-card popular">
+                        <div class="popular-badge">Popular</div>
+                        <h4 class="plan-title">Plus</h4>
+                        <div class="plan-price"><span class="price-amount">$20</span> USD/month</div>
+                        <p class="plan-description">Level up productivity and creativity with expanded access</p>
+                        <button class="btn-primary plan-action-btn">Get Plus</button>
+                        <ul class="feature-list">
+                            <li class="feature-list-item"><svg viewBox="0 0 16 16" fill="currentColor"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"/></svg>Everything in Free</li>
+                            <li class="feature-list-item"><svg viewBox="0 0 16 16" fill="currentColor"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"/></svg>Extended limits on messaging, file uploads, advanced data analysis, and image generation</li>
+                            <li class="feature-list-item"><svg viewBox="0 0 16 16" fill="currentColor"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"/></svg>Standard and advanced voice mode</li>
+                            <li class="feature-list-item"><svg viewBox="0 0 16 16" fill="currentColor"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"/></svg>Access to deep research, multiple reasoning models (o1-mini, o1-mini-high, and o1), and a research preview of GPT-4.5</li>
+                             <li class="feature-list-item"><svg viewBox="0 0 16 16" fill="currentColor"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"/></svg>Create and use tasks, projects, and custom GPTs</li>
+                             <li class="feature-list-item"><svg viewBox="0 0 16 16" fill="currentColor"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"/></svg>Limited access to Sora video generation</li>
+                             <li class="feature-list-item"><svg viewBox="0 0 16 16" fill="currentColor"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"/></svg>Opportunities to test new features</li>
+                        </ul>
+                        <p class="plan-footnote">Limits apply</p>
+                    </div>
+                    <!-- Pro Plan -->
+                    <div class="upgrade-plan-card">
+                        <h4 class="plan-title">Pro</h4>
+                        <div class="plan-price"><span class="price-amount">$200</span> USD/month</div>
+                        <p class="plan-description">Get the best of OpenAI with the highest level of access</p>
+                        <button class="btn-primary plan-action-btn">Get Pro</button>
+                        <ul class="feature-list">
+                            <li class="feature-list-item"><svg viewBox="0 0 16 16" fill="currentColor"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"/></svg>Everything in Plus</li>
+                            <li class="feature-list-item"><svg viewBox="0 0 16 16" fill="currentColor"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"/></svg>Unlimited access to all reasoning models and GPT-4o</li>
+                            <li class="feature-list-item"><svg viewBox="0 0 16 16" fill="currentColor"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"/></svg>Unlimited access to advanced voice</li>
+                            <li class="feature-list-item"><svg viewBox="0 0 16 16" fill="currentColor"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"/></svg>Extended access to deep research, which conducts multi-step online research for complex tasks</li>
+                            <li class="feature-list-item"><svg viewBox="0 0 16 16" fill="currentColor"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"/></svg>Access to research previews of GPT-4.5 and Operator</li>
+                            <li class="feature-list-item"><svg viewBox="0 0 16 16" fill="currentColor"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"/></svg>Access to o1 pro mode, which uses more compute for the best answers to the hardest questions</li>
+                            <li class="feature-list-item"><svg viewBox="0 0 16 16" fill="currentColor"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"/></svg>Extended access to Sora video generation</li>
+                        </ul>
+                        <p class="plan-footnote">Unlimited subject to abuse guardrails. <a href="#" class="learn-more-link">Learn more</a></p>
+                    </div>
+                </div>
+
+                <div class="upgrade-plan-cards-container" id="business-plans-container">
+                    <!-- Team Plan -->
+                    <div class="upgrade-plan-card">
+                        <h4 class="plan-title">Team</h4>
+                         <div class="plan-price"><span class="price-amount">$25</span> USD/month <span class="price-interval">per user</span></div>
+                        <p class="plan-description">Supercharge your team's work with a secure, collaborative workspace</p>
+                        <button class="btn-primary plan-action-btn">Get Team</button>
+                        <ul class="feature-list">
+                            <li class="feature-list-item"><svg viewBox="0 0 16 16" fill="currentColor"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"/></svg>Everything in Plus, with higher message limits for GPT-4o</li>
+                            <li class="feature-list-item"><svg viewBox="0 0 16 16" fill="currentColor"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"/></svg>Customize ChatGPT to your workflows with file uploads, custom projects, GPTs, and persistent memory</li>
+                            <li class="feature-list-item"><svg viewBox="0 0 16 16" fill="currentColor"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"/></svg>Delegate routine work to ChatGPT with tasks and solve complex problems with deep research, freeing your team for high-value work</li>
+                            <li class="feature-list-item"><svg viewBox="0 0 16 16" fill="currentColor"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"/></svg>Create and innovate with multimodal AI—including Sora, image generation, canvas, and integrated coding tools</li>
+                            <li class="feature-list-item"><svg viewBox="0 0 16 16" fill="currentColor"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"/></svg>Protect your data with multi-factor authentication, data encryption, and data excluded from training by default. <a href="#" class="learn-more-link">Learn more</a></li>
+                            <li class="feature-list-item"><svg viewBox="0 0 16 16" fill="currentColor"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"/></svg>Collaborate seamlessly with shared GPTs and an admin console for bulk user management</li>
+                        </ul>
+                        <p class="plan-footnote">For 2+ users, billed annually</p>
+                    </div>
+                </div>
+
+                <div class="upgrade-plan-footer">
+                    Need more capabilities for your business? <a href="#" id="see-enterprise-link">See ChatGPT Enterprise</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END: Upgrade Plan Modal -->
+
+
+    <div class="confirm-dialog-overlay" id="confirm-delete-overlay">
+        <div class="confirm-dialog" id="confirm-delete-dialog" data-chat-id-to-delete="">
+            <h4>Delete Chat?</h4>
+            <p id="confirm-delete-message">Are you sure you want to permanently delete this chat?</p>
+            <div class="confirm-dialog-actions">
+                <button class="btn-secondary" id="cancel-delete-btn">Cancel</button>
+                <button class="btn-danger" id="confirm-delete-btn">Delete</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="confirm-dialog-overlay" id="confirm-logout-overlay">
+        <div class="confirm-dialog" id="confirm-logout-dialog">
+            <h4>Log Out?</h4>
+            <p>Are you sure you want to log out? Your session will be ended.</p>
+            <div class="confirm-dialog-actions">
+                <button class="btn-secondary" id="cancel-logout-btn">Cancel</button>
+                <button class="btn-primary" id="confirm-logout-btn">Log out</button>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="prism.js"></script>
+
+    <script src="assist/js/multi_dashboard.js"></script>
+</body>
+</html>
